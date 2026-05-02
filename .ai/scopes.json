@@ -1,0 +1,205 @@
+{
+  "$comment": "Scope registry — mỗi scope giới hạn files mà agent được đọc/sửa và context cần load.",
+  "scopes": {
+    "ui-atoms": {
+      "label": "UI Atoms",
+      "description": "Button, Input, Badge, Label, Select và các atom cơ bản",
+      "files": [
+        "components/atoms/**"
+      ],
+      "context": [
+        "components/atoms/index.ts"
+      ],
+      "readonly": [
+        "lib/utils.ts"
+      ],
+      "deps": []
+    },
+    "ui-molecules": {
+      "label": "UI Molecules",
+      "description": "FormField, Modal, PalaceCell, SearchBar và các molecule tổ hợp",
+      "files": [
+        "components/molecules/**"
+      ],
+      "context": [
+        "components/molecules/index.ts"
+      ],
+      "readonly": [
+        "components/atoms/index.ts"
+      ],
+      "deps": ["ui-atoms"]
+    },
+    "ui-organisms": {
+      "label": "UI Organisms",
+      "description": "Navbar, Sidebar, LapLaSo forms/detail, VanHan timeline",
+      "files": [
+        "components/organisms/**"
+      ],
+      "context": [
+        "components/organisms/index.ts"
+      ],
+      "readonly": [
+        "components/atoms/index.ts",
+        "components/molecules/index.ts",
+        "lib/contracts/*.ts"
+      ],
+      "deps": ["ui-atoms", "ui-molecules"]
+    },
+    "ui-templates": {
+      "label": "UI Templates",
+      "description": "AuthTemplate, DashboardTemplate",
+      "files": [
+        "components/templates/**"
+      ],
+      "context": [
+        "components/templates/index.ts"
+      ],
+      "readonly": [],
+      "deps": ["ui-organisms"]
+    },
+    "engine-bazi": {
+      "label": "Bazi Engine",
+      "description": "Thuật toán Bát Tự — engine, types, display",
+      "files": [
+        "lib/bazi/**"
+      ],
+      "context": [
+        "lib/bazi/types.ts"
+      ],
+      "readonly": [
+        "lib/api-schema.ts",
+        "lib/contracts/fortune.ts"
+      ],
+      "deps": []
+    },
+    "engine-vanhan": {
+      "label": "Van Han Engine",
+      "description": "Logic dự báo vận hạn",
+      "files": [
+        "lib/vanhan.ts",
+        "lib/vanhan_predict.ts",
+        "lib/contracts/vanhan.ts"
+      ],
+      "context": [
+        "lib/contracts/vanhan.ts"
+      ],
+      "readonly": [
+        "lib/api-schema.ts",
+        "lib/bazi/types.ts"
+      ],
+      "deps": []
+    },
+    "api-routes": {
+      "label": "API Routes",
+      "description": "Tất cả API endpoints (tuvi, vanhan)",
+      "files": [
+        "app/api/**"
+      ],
+      "context": [
+        "lib/api-schema.ts",
+        "lib/contracts/fortune.ts"
+      ],
+      "readonly": [
+        "lib/bazi/engine.ts",
+        "lib/vanhan_predict.ts"
+      ],
+      "deps": ["engine-bazi", "engine-vanhan"]
+    },
+    "services": {
+      "label": "Service Layer",
+      "description": "API client, auth, fortune, vanhan services",
+      "files": [
+        "lib/services/**"
+      ],
+      "context": [
+        "lib/api-schema.ts",
+        "lib/contracts/*.ts"
+      ],
+      "readonly": [],
+      "deps": []
+    },
+    "contracts": {
+      "label": "Data Contracts",
+      "description": "Interfaces & types cho data models",
+      "files": [
+        "lib/contracts/**"
+      ],
+      "context": [],
+      "readonly": [],
+      "deps": []
+    },
+    "pages-marketing": {
+      "label": "Marketing Pages",
+      "description": "Landing, hoso, laplaso, thuvien, vanhan marketing pages",
+      "files": [
+        "app/[locale]/(marketing)/**"
+      ],
+      "context": [],
+      "readonly": [
+        "components/organisms/index.ts",
+        "lib/services/*.ts"
+      ],
+      "deps": ["ui-organisms", "services"]
+    },
+    "pages-auth": {
+      "label": "Auth Pages",
+      "description": "Login, register pages",
+      "files": [
+        "app/[locale]/(auth)/**",
+        "features/auth/**"
+      ],
+      "context": [
+        "lib/contracts/auth.ts"
+      ],
+      "readonly": [
+        "lib/services/auth.ts",
+        "lib/services/authSession.ts"
+      ],
+      "deps": ["services"]
+    },
+    "pages-views": {
+      "label": "Detail Views",
+      "description": "Trang xem chi tiết lá số, vận hạn",
+      "files": [
+        "app/[locale]/views/**",
+        "app/[locale]/vanhan/**"
+      ],
+      "context": [
+        "lib/contracts/fortune.ts",
+        "lib/contracts/vanhan.ts"
+      ],
+      "readonly": [
+        "lib/services/fortune.ts",
+        "lib/services/vanhan.ts"
+      ],
+      "deps": ["ui-organisms", "services"]
+    },
+    "i18n": {
+      "label": "Internationalization",
+      "description": "Cấu hình đa ngôn ngữ, messages files",
+      "files": [
+        "i18n/**",
+        "messages/**"
+      ],
+      "context": [
+        "i18n/routing.ts"
+      ],
+      "readonly": [],
+      "deps": []
+    },
+    "config": {
+      "label": "Project Config",
+      "description": "next.config, tsconfig, package.json, tailwind",
+      "files": [
+        "next.config.ts",
+        "tsconfig.json",
+        "package.json",
+        "tailwind.config.*",
+        "postcss.config.*"
+      ],
+      "context": [],
+      "readonly": [],
+      "deps": []
+    }
+  }
+}

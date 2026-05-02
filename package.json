@@ -1,0 +1,39 @@
+{
+  "name": "nextjs-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "ai:context": "node scripts/ai-context.mjs",
+    "ai:handoff": "node scripts/ai-handoff.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "ai:scope": "node scripts/ai-scope.mjs",
+    "ai:scopes": "node scripts/ai-scope.mjs --list"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "framer-motion": "^12.38.0",
+    "hls.js": "^1.6.15",
+    "lucide-react": "^1.7.0",
+    "lunar-javascript": "^1.7.7",
+    "motion": "^12.23.24",
+    "next": "16.2.2",
+    "next-intl": "^4.9.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tyme4ts": "^1.4.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

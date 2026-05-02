@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic-settings
+supabase
+google-genai
+tavily-python
+pytest
+pytest-asyncio
